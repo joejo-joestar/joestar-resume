@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+@import "tailwindcss";
+@import "@catppuccin/tailwindcss/mocha.css";
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+  position: relative;
+  font-family: "Space Grotesk", sans-serif;
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  background-color: var(--catppuccin-color-base);
+}
+
+::-moz-selection {
+  background: var(--catppuccin-color-overlay0);
+  color: var(--catppuccin-color-rosewater);
+}
+
+::selection {
+  background: var(--catppuccin-color-overlay0);
+  color: var(--catppuccin-color-rosewater);
+}
+
+nav {
+  position: fixed;
+  z-index: 100;
+  backdrop-filter: blur(5px);
+  top: 0;
+  margin: auto;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+footer {
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, var(--text-5xl));
+  line-height: var(--tw-leading, var(--text-5xl--line-height));
+}
+
+section {
+  width: 100%;
+  flex-grow: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 10rem clamp(1.5rem, 10vw, 20rem);
+  background-color: var(--catppuccin-color-base);
+}
+
+section:nth-child(even) {
+  background-color: color-mix(
+    in oklab,
+    var(--catppuccin-color-surface0) 20%,
+    transparent
+  );
+}

@@ -1,0 +1,22 @@
+---
+import { Icon } from "astro-icon/components";
+import { techIcons } from "../lib/techIcons";
+
+interface Props {
+  name: string;
+  variant?: "pill" | "chip";
+}
+
+const { name, variant = "pill" } = Astro.props;
+const icon = techIcons[name];
+
+const styles = {
+  pill: "text-xs px-2 py-0.5 rounded-full bg-ctp-mauve/20 text-ctp-mauve",
+  chip: "text-sm px-3 py-1 rounded-md bg-ctp-surface0 border border-ctp-surface1 text-ctp-text",
+};
+---
+
+<span class={`${styles[variant]} flex items-center gap-1`}>
+  {icon && <Icon name={icon} class="w-3 h-3" />}
+  {name}
+</span>

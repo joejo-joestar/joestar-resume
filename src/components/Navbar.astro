@@ -1,0 +1,122 @@
+---
+const quickLinks = [
+  { name: "projects.", href: "#projects" },
+  { name: "experience.", href: "#experience" },
+  { name: "skills.", href: "#skills" },
+  { name: "education.", href: "#education" },
+  { name: "contact.", href: "#contact" },
+];
+---
+
+<nav class="bg-ctp-surface0/75">
+  <div class="flex items-center justify-between px-[5%] py-[1.5%]">
+    <a
+      class="text-2xl font-bold text-ctp-mauve hover:text-ctp-green transition-all duration-300"
+      href="#home">joseph/~</a
+    >
+    <ul class="hidden md:flex gap-5">
+      {
+        quickLinks.map((link) => (
+          <li>
+            <a
+              class="text-ctp-text hover:text-ctp-green font-semibold transition-all duration-300"
+              href={link.href}
+            >
+              {link.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a
+      class="hidden md:inline px-4 py-2 rounded-md text-ctp-surface1 bg-ctp-mauve hover:bg-ctp-mauve/75 border-2 border-ctp-mauve/75 transition-all duration-300"
+      href="/resume.pdf"
+      target="_blank"
+    >
+      resume.
+    </a>
+    <button
+      id="mobile-menu-toggle"
+      class="md:hidden flex flex-col justify-center gap-1.5 p-2"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <span
+        id="bar1"
+        class="block w-6 h-0.5 bg-ctp-text transition-all duration-300 origin-center"
+      ></span>
+      <span
+        id="bar2"
+        class="block w-6 h-0.5 bg-ctp-text transition-all duration-300"></span>
+      <span
+        id="bar3"
+        class="block w-6 h-0.5 bg-ctp-text transition-all duration-300 origin-center"
+      ></span>
+    </button>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="hidden flex-col items-center gap-4 pb-5 md:hidden"
+  >
+    <ul class="flex flex-col items-center gap-3">
+      {
+        quickLinks.map((link) => (
+          <li>
+            <a
+              class="text-ctp-text hover:text-ctp-green font-semibold transition-all duration-300 mobile-nav-link"
+              href={link.href}
+            >
+              {link.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a
+      class="px-4 py-2 rounded-md text-ctp-surface1 bg-ctp-mauve hover:bg-ctp-mauve/75 border-2 border-ctp-mauve/75 transition-all duration-300 mobile-nav-link"
+      href="/resume.pdf"
+      target="_blank"
+    >
+      resume.
+    </a>
+  </div>
+
+  <script>
+    const toggle = document.getElementById("mobile-menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    const bar1 = document.getElementById("bar1");
+    const bar2 = document.getElementById("bar2");
+    const bar3 = document.getElementById("bar3");
+
+    let isOpen = false;
+
+    function closeMenu() {
+      isOpen = false;
+      menu?.classList.add("hidden");
+      menu?.classList.remove("flex");
+      toggle?.setAttribute("aria-expanded", "false");
+      bar1?.classList.remove("rotate-45", "translate-y-2");
+      bar2?.classList.remove("opacity-0");
+      bar3?.classList.remove("-rotate-45", "-translate-y-2");
+    }
+
+    toggle?.addEventListener("click", () => {
+      isOpen = !isOpen;
+      if (isOpen) {
+        menu?.classList.remove("hidden");
+        menu?.classList.add("flex");
+        toggle?.setAttribute("aria-expanded", "true");
+        bar1?.classList.add("rotate-45", "translate-y-2");
+        bar2?.classList.add("opacity-0");
+        bar3?.classList.add("-rotate-45", "-translate-y-2");
+      } else {
+        closeMenu();
+      }
+    });
+
+    document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+  </script>
+</nav>

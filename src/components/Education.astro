@@ -1,0 +1,45 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+
+const entries = (await getCollection("education")).sort(
+  (a: CollectionEntry<"education">, b: CollectionEntry<"education">) =>
+    a.data.order - b.data.order,
+);
+const rendered = await Promise.all(
+  entries.map(async (entry: CollectionEntry<"education">) => ({
+    entry,
+    ...(await render(entry)),
+  })),
+);
+---
+
+<section id="education" class="items-start justify-start min-h-fit!">
+  <h1>education.</h1>
+  <div class="flex flex-col gap-6 mt-8 w-full">
+    {
+      rendered.map(({ entry, Content }) => (
+        <div class="bg-ctp-surface0 rounded-lg p-5 border border-ctp-surface1">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
+            <div>
+              <h3 class="text-lg font-bold text-ctp-text">
+                {entry.data.institution}
+              </h3>
+              <p class="text-ctp-mauve font-semibold">
+                {entry.data.degree} in {entry.data.field}
+              </p>
+            </div>
+            <div class="text-sm text-ctp-subtext0 sm:text-right shrink-0">
+              <p>
+                {entry.data.startYear} — {entry.data.endYear ?? "Present"}
+              </p>
+              {entry.data.gpa && <p>GPA: {entry.data.gpa}</p>}
+            </div>
+          </div>
+          <div class="mt-3 text-ctp-subtext0 text-sm prose prose-invert prose-sm max-w-none">
+            <Content />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

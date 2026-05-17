@@ -1,0 +1,40 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import TechTag from "./TechTag.astro";
+
+type SkillEntry = CollectionEntry<"skills">;
+
+const allSkills = (await getCollection("skills")).sort(
+  (a: SkillEntry, b: SkillEntry) => a.data.order - b.data.order
+);
+
+const groupOrder = ["Technical", "Other"];
+const groups = groupOrder
+  .map((g) => ({ name: g, categories: allSkills.filter((s) => s.data.group === g) }))
+  .filter((g) => g.categories.length > 0);
+---
+
+<section id="skills" class="items-start justify-start">
+  <h1>skills.</h1>
+  <div class="flex flex-col gap-10 mt-8 w-full">
+    {
+      groups.map(({ name, categories }) => (
+        <div>
+          <h2 class="text-ctp-lavender font-bold text-xl mb-5">{name}</h2>
+          <div class="flex flex-col gap-6">
+            {categories.map((cat: SkillEntry) => (
+              <div>
+                <h3 class="text-ctp-mauve font-semibold mb-3">{cat.data.category}</h3>
+                <div class="flex flex-wrap gap-2">
+                  {cat.data.items.map((item: string) => (
+                    <TechTag name={item} variant="chip" />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
