@@ -1,5 +1,6 @@
 ---
 import "@src/styles/global.css";
+import Analytics from "@vercel/analytics/astro";
 import Navbar from "@src/components/Navbar.astro";
 import Footer from "@src/components/Footer.astro";
 
@@ -26,5 +27,6 @@ const { title, description } = Astro.props as Props;
     <Navbar />
     <slot />
     <Footer />
+    <Analytics />
   </body>
 </html>

@@ -12,9 +12,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@iconify-json/simple-icons": "^1.2.82",
     "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/simple-icons": "^1.2.82",
     "@tailwindcss/vite": "^4.3.0",
+    "@vercel/analytics": "^2.0.1",
     "astro": "^6.3.3",
     "astro-icon": "^1.1.5",
     "tailwindcss": "^4.3.0"
