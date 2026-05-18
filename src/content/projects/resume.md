@@ -1,7 +1,8 @@
 ---
 title: "Portfolio Site"
-description: "Personal resume website built with Astro and TailwindCSS, featuring a Catppuccin Mocha theme."
+description: "Personal resume website."
 tags: ["Astro", "TypeScript", "TailwindCSS"]
-github: "https://github.com/joejo-joestar/joejo-resume"
+github: "https://github.com/joejo-joestar/joestar-resume"
+link: "https://resume.joestar.is-a.dev"
 order: 9
 ---
