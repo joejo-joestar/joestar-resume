@@ -1,5 +1,5 @@
 ---
-category: "Tools & Platforms"
+category: "Soft Skills"
 group: "Other"
 items: ["Problem Solving", "Adaptability", "Creativity", "Time Management", "Critical Thinking", "Research"]
 order: 6
